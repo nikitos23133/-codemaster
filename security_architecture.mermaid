@@ -1,0 +1,10 @@
+graph TD
+    A[CloudFront] --> B[WAF]
+    B --> C[ALB]
+    C --> D[ECS Fargate]
+    D --> E[RDS]
+    E --> F[ElastiCache]
+    F --> G[S3]
+    H[Shield Advanced] --> B
+    I[GuardDuty] --> D
+    J[Config] --> G
