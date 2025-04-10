@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      target: production
+    image: codemaster-app
+    environment:
+      - NODE_ENV=production
+      - DB_HOST=${DB_HOST}
+      - STRIPE_KEY=${STRIPE_KEY}
+    ports:
+      - "80:3000"
+    depends_on:
+      - db
+
+  db:
+    image: postgres:13
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASS}
+
+volumes:
+  db_data:
