@@ -1,0 +1,13 @@
+# appspec.yml
+version: 0.0
+Resources:
+  - TargetService:
+      Type: AWS::ECS::Service
+      Properties:
+        TaskDefinition: "codemaster-task"
+        LoadBalancerInfo:
+          ContainerName: "web"
+          ContainerPort: 80
+Hooks:
+  BeforeInstall: "scripts/before-install.sh"
+  AfterInstall: "scripts/after-install.sh"
