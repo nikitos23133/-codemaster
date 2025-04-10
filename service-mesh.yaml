@@ -1,0 +1,18 @@
+# istio-config.yml
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata:
+  name: codemaster
+spec:
+  hosts:
+  - "codemaster.example.com"
+  http:
+  - route:
+    - destination:
+        host: codemaster-service
+        subset: v1
+      weight: 90
+    - destination:
+        host: codemaster-service
+        subset: v2
+      weight: 10
