@@ -1,0 +1,14 @@
+graph TD
+    A[Пользователь] --> B[CloudFront CDN]
+    B --> C[WAF & Shield]
+    C --> D[Application Load Balancer]
+    D --> E[ECS Fargate Services]
+    E --> F[Auth Service]
+    E --> G[Courses Service]
+    E --> H[Payments Service]
+    F --> I[RDS PostgreSQL]
+    G --> J[ElastiCache Redis]
+    H --> K[Stripe API]
+    L[CloudWatch] --> E
+    M[X-Ray] --> E
+    N[GuardDuty] --> D
