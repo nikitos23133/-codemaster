@@ -1,0 +1,7 @@
+- name: Load Test
+  uses: artilleryio/action-artillery@v1
+  with:
+    command: run
+    config: load-test/artillery.yml
+  env:
+    ARTILLERY_CLOUD_API_KEY: ${{ secrets.ARTILLERY_KEY }}
