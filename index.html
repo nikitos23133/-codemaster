@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CodeMaster - Школа программирования</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Навигация */
+        .navbar {
+            background: #2c3e50;
+            padding: 1rem;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: space-around;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            padding: 1rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #3498db;
+        }
+
+        /* Герой секция */
+        .hero {
+            background: #34495e;
+            color: white;
+            padding: 8rem 2rem;
+            text-align: center;
+        }
+
+        /* Секция курсов */
+        .courses {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 4rem 2rem;
+        }
+
+        .course-card {
+            background: white;
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s;
+        }
+
+        .course-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .course-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.5rem;
+            margin: 1rem 0;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .btn:hover {
+            background: #2980b9;
+        }
+
+        /* Секция языков */
+        .languages {
+            padding: 4rem 2rem;
+            background: #f9f9f9;
+        }
+
+        .language-tabs {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .tab {
+            padding: 1rem 2rem;
+            background: #ddd;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .tab.active {
+            background: #3498db;
+            color: white;
+        }
+
+        .tab-content {
+            display: none;
+            padding: 2rem;
+            background: white;
+            border-radius: 10px;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .nav-links {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .hamburger {
+                display: block;
+                color: white;
+                font-size: 1.5rem;
+                cursor: pointer;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="hamburger">☰</div>
+        <ul class="nav-links">
+            <li><a href="#home">Главная</a></li>
+            <li><a href="#courses">Курсы</a></li>
+            <li><a href="#languages">Языки</a></li>
+            <li><a href="#contact">Контакты</a></li>
+        </ul>
+    </nav>
+
+    <!-- Главная секция -->
+    <section class="hero" id="home">
+        <h1>Стань профессиональным разработчиком</h1>
+        <p>Изучайте программирование с нуля до профессионального уровня</p>
+        <button class="btn" onclick="showCourses()">Начать обучение</button>
+    </section>
+
+    <!-- Курсы -->
+    <section class="courses" id="courses">
+        <div class="course-card">
+            <img src="https://via.placeholder.com/300x200" alt="Python" class="course-image">
+            <h3>Python для начинающих</h3>
+            <p>Полный курс по основам Python и веб-разработке</p>
+            <button class="btn" onclick="enroll('Python')">Записаться</button>
+        </div>
+        <!-- Добавьте больше курсов по аналогии -->
+    </section>
+
+    <!-- Языки программирования -->
+    <section class="languages" id="languages">
+        <div class="language-tabs">
+            <button class="tab active" onclick="openTab(event, 'python')">Python</button>
+            <button class="tab" onclick="openTab(event, 'javascript')">JavaScript</button>
+            <button class="tab" onclick="openTab(event, 'java')">Java</button>
+        </div>
+
+        <div id="python" class="tab-content active">
+            <h3>Python</h3>
+            <p>Подробное руководство по Python...</p>
+        </div>
+
+        <div id="javascript" class="tab-content">
+            <h3>JavaScript</h3>
+            <p>Полный курс по современному JavaScript...</p>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer style="background: #2c3e50; color: white; text-align: center; padding: 2rem;">
+        <p>© 2023 CodeMaster. Все права защищены</p>
+    </footer>
+
+    <script>
+        // Мобильное меню
+        document.querySelector('.hamburger').addEventListener('click', () => {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+
+        // Табы языков
+        function openTab(evt, tabName) {
+            const tabContents = document.querySelectorAll('.tab-content');
+            const tabs = document.querySelectorAll('.tab');
+
+            tabContents.forEach(content => content.classList.remove('active'));
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            evt.currentTarget.classList.add('active');
+            document.getElementById(tabName).classList.add('active');
+        }
+
+        // Функции для кнопок
+        function showCourses() {
+            document.getElementById('courses').scrollIntoView({behavior: 'smooth'});
+        }
+
+        function enroll(courseName) {
+            alert(`Спасибо за регистрацию на курс "${courseName}"!`);
+            // Здесь можно добавить логику обработки формы
+        }
+
+        // Плавная прокрутка
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
+</body>
+</html>
