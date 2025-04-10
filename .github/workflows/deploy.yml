@@ -1,0 +1,42 @@
+name: Deploy to Production
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '16'
+    
+    - name: Build and Push Docker
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
+      run: |
+        docker build -t codemaster-app .
+        aws ecr get-login-password | docker login --username AWS --password-stdin $ECR_REGISTRY
+        docker tag codemaster-app:latest $ECR_REGISTRY/codemaster-app:latest
+        docker push $ECR_REGISTRY/codemaster-app:latest
+
+  deploy:
+    needs: [build]
+    runs-on: ubuntu-latest
+    steps:
+    - name: Terraform Apply
+      uses: hashicorp/terraform-github-actions@v2
+      with:
+        tf_actions_version: 1.2.0
+        tf_actions_subcommand: 'apply'
+        tf_actions_working_dir: 'infra'
+        tf_actions_comment: true
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_KEY }}
+        TF_VAR_db_password: ${{ secrets.DB_PASSWORD }}
