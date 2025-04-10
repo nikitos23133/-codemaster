@@ -1,0 +1,19 @@
+Global Accelerator
+↓
+CloudFront + WAF + Shield
+↓
+API Gateway (REST/WebSocket)
+↓
+ECS/EKS с Service Mesh
+↓
+RDS Aurora (Multi-AZ) + ElastiCache Redis
+↓
+EventBridge (Event Bus)
+↓
+Lambda (Serverless Functions)
+↓
+Data Lake (S3 + Athena + Glue)
+↓
+Monitoring (CloudWatch + X-Ray + Grafana)
+↓
+Security (GuardDuty + Config + Inspector)
