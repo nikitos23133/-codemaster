@@ -1,13 +1,33 @@
 {
   "dependencies": {
-    "express": "^4.17.1",
-    "mongoose": "^6.0.12",
     "bcryptjs": "^2.4.3",
-    "jsonwebtoken": "^8.5.1",
-    "stripe": "^8.197.0",
-    "validator": "^13.7.0",
-    "helmet": "^4.6.0",
+    "dotenv": "^10.0.0",
+    "express": "^4.21.2",
     "express-rate-limit": "^5.3.0",
-    "dotenv": "^10.0.0"
-  }
+    "helmet": "^4.6.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^6.0.12",
+    "stripe": "^8.197.0",
+    "validator": "^13.7.0"
+  },
+  "name": "codemaster",
+  "version": "1.0.0",
+  "description": "",
+  "main": "featureFlags.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nikitos23133/codemaster.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/nikitos23133/codemaster/issues"
+  },
+  "homepage": "https://github.com/nikitos23133/codemaster#readme"
 }
