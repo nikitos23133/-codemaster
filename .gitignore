@@ -1,0 +1,8 @@
+# Docker-артефакты
+Dockerfile
+docker-compose*
+.dockerignore
+
+# Системные файлы
+.DS_Store
+Thumbs.db
