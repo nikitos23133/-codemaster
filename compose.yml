@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  auth-service:
+    build: ./services/auth
+    ports:
+      - "3001:3000"
+  
+  courses-service:
+    build: ./services/courses
+    ports:
+      - "3002:3000"
+  
+  notifications-service:
+    build: ./services/notifications
+    ports:
+      - "3003:3000"
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
