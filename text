@@ -1,10 +1,9 @@
-project/
-├── client/           # Ваш фронтенд-код
-├── server/
-│   ├── models/       # Модели MongoDB
-│   ├── routes/       # Express роуты
-│   ├── utils/        # Вспомогательные функции
-│   ├── app.js        # Основной файл приложения
-│   └── config.js     # Конфигурация
-├── package.json
-└── .env              # Переменные окружения
+codemaster/
+├── client/          # Фронтенд (React)
+│   ├── package.json
+│   └── ...
+├── server/          # Бэкенд (Node.js)
+│   ├── package.json
+│   └── ...
+├── .gitignore
+└── README.md
